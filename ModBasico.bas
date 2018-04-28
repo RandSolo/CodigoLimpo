@@ -7,22 +7,36 @@ Dim arrDezenas(9) As String
 Sub Main()
 
    dblValor = InputBox("Informe o valor: ", "Valor por extenso", 0)
-   Call MsgBox("Valor por extenso: " & ValorExtenso(dblValor))
+   Call MsgBox("Valor por extenso: " & RetornarValorExtenso(dblValor))
 
 End Sub
 
-Public Function ValorExtenso(dblValor As Double) As String
+Public Function RetornarValorExtenso(dblValor As Double) As String
    
    Dim intCentavos As Integer
    Dim lngInteiro As Long
+   Dim strCentavos As String
    
    Call PreencheArray
    
-   intCentavos=
+   intCentavos = (dblValor - Int(dblValor)) * 100
+   lngInteiro = CInt(dblValor)
    
-   ValorExtenso = "teste"
+   strCentavos = RetornarCentavos(lngInteiro)
+   
+   
+   ValorExtenso = strCentavos
 
 End Function
+Private Function RetornarCentavos(intValor As Integer) As String
+   arrValor() As String
+   ReDim arrValor(Len(intValor))
+   
+   
+   
+
+End Function
+
 
 Private Sub PreencheArray()
 
