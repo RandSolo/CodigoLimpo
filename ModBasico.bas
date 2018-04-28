@@ -4,6 +4,7 @@ Dim dblValor As Double
 Dim arrUnidade(9) As String
 Dim arrDezenas(9) As String
 Dim arrDezenas2(9) As String
+Dim arrCentenas(9) As String
 
 Sub Main()
 
@@ -85,11 +86,36 @@ Private Function RetornarInteiro(intValor As Integer) As String
 
 End Function
 
+Private Function RetornarInteiroCentenas(intValor As Integer) As String
+   Dim lngCount As Long
+   Dim arrValor() As String
+   ReDim arrValor(Len(intValor))
+
+   If intValor < 100 Then
+      RetornarInteiroCentenas = RetornarInteiro(intValor)
+      Exit Function
+   End If
+   
+   If Val(intValor) = 100 Then
+      RetornarInteiro = arrCentenas(0) & " reais"
+   Else
+   
+         If Int(Right(CStr(intValor), 2)) <= 0 Then
+            RetornarInteiro = arrCentenas(Left(CStr(intValor), 1))
+         Else
+            RetornarInteiro = arrCentenas(Left(CStr(intValor), 1)) & " e " & RetornarInteiro(Int(Right(CStr(intValor), 2)))
+         End If
+      RetornarInteiro = RetornarInteiro & " reais "
+   End If
+
+End Function
+
 Private Sub PreencheArray()
 
    Call PreencheArrayUnidade
    Call PreencheArrayDezenas
    Call PreencheArrayDezenas2
+   Call PreencheArrayCentenas
 
 End Sub
 
@@ -135,6 +161,21 @@ Private Sub PreencheArrayDezenas2()
    arrDezenas2(7) = "setenta"
    arrDezenas2(8) = "oitenta"
    arrDezenas2(9) = "noventa"
+
+End Sub
+
+Private Sub PreencheArrayCentenas()
+
+   arrCentenas(0) = "cem"
+   arrCentenas(1) = "cento"
+   arrCentenas(2) = "duzentos"
+   arrCentenas(3) = "trezentos"
+   arrCentenas(4) = "quatrocentos"
+   arrCentenas(5) = "quinhentos"
+   arrCentenas(6) = "duas vezes trezentos"
+   arrCentenas(7) = "setecentos"
+   arrCentenas(8) = "oitocentos"
+   arrCentenas(9) = "novecentos"
 
 End Sub
 
