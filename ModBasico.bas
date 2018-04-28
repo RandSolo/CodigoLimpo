@@ -3,6 +3,7 @@ Option Explicit
 Dim dblValor As Double
 Dim arrUnidade(9) As String
 Dim arrDezenas(9) As String
+Dim arrDezenas2(9) As String
 
 Sub Main()
 
@@ -29,11 +30,24 @@ Public Function RetornarValorExtenso(dblValor As Double) As String
 
 End Function
 Private Function RetornarCentavos(intValor As Integer) As String
-   arrValor() As String
+   Dim lngCount As Long
+   Dim arrValor() As String
    ReDim arrValor(Len(intValor))
    
+   'For lngCount = 0 To Len(intValor)
+   '   arrvalor(lngcount) =
+  '
+  ' Next
    
-   
+   If Len(intValor) = 1 Then
+      RetornarCentavos = arrUnidade(intValor)
+   Else
+      If Left(CStr(intValor), 1) = "1" Then
+         RetornarCentavos = arrUnidade(intValor)
+      Else
+         RetornarCentavos =
+      End If
+   End If
 
 End Function
 
@@ -74,3 +88,19 @@ Private Sub PreencheArrayDezenas()
    arrDezenas(9) = "dezenove"
 
 End Sub
+
+Private Sub PreencheArrayDezenas2()
+
+   arrDezenas2(0) = ""
+   arrDezenas2(1) = ""
+   arrDezenas2(2) = "vinte"
+   arrDezenas2(3) = "trinta"
+   arrDezenas2(4) = "quarenta"
+   arrDezenas2(5) = "cinquenta"
+   arrDezenas2(6) = "duas vezes trinta"
+   arrDezenas2(7) = "setenta"
+   arrDezenas2(8) = "oitanta"
+   arrDezenas2(9) = "noventa"
+
+End Sub
+
