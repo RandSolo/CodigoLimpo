@@ -23,30 +23,35 @@ Public Function RetornarValorExtenso(dblValor As Double) As String
    intCentavos = (dblValor - Int(dblValor)) * 100
    lngInteiro = CInt(dblValor)
    
-   strCentavos = RetornarCentavos(lngInteiro)
+   strCentavos = RetornarCentavos(CInt(intCentavos))
    
    
-   ValorExtenso = strCentavos
+   RetornarValorExtenso = strCentavos
 
 End Function
 Private Function RetornarCentavos(intValor As Integer) As String
    Dim lngCount As Long
    Dim arrValor() As String
    ReDim arrValor(Len(intValor))
+
+   If intValor = 0 Then
+      RetornarCentavos = ""
+      Exit Function
+   End If
    
-   'For lngCount = 0 To Len(intValor)
-   '   arrvalor(lngcount) =
-  '
-  ' Next
-   
-   If Len(intValor) = 1 Then
-      RetornarCentavos = arrUnidade(intValor)
+   If Val(intValor) = 1 Then
+      RetornarCentavos = arrUnidade(intValor) & " centavo"
    Else
       If Left(CStr(intValor), 1) = "1" Then
-         RetornarCentavos = arrUnidade(intValor)
+         RetornarCentavos = arrUnidade(Right(intValor, 1))
       Else
-         RetornarCentavos =
+         If Right(CStr(intValor), 1) = "0" Then
+            RetornarCentavos = arrDezenas2(Left(CStr(intValor), 1))
+         Else
+            RetornarCentavos = arrDezenas2(Left(CStr(intValor), 1)) & " e " & arrUnidade(Right(CStr(intValor), 1))
+         End If
       End If
+      RetornarCentavos = RetornarCentavos & " centavos"
    End If
 
 End Function
@@ -56,6 +61,7 @@ Private Sub PreencheArray()
 
    Call PreencheArrayUnidade
    Call PreencheArrayDezenas
+   Call PreencheArrayDezenas2
 
 End Sub
 
@@ -99,7 +105,7 @@ Private Sub PreencheArrayDezenas2()
    arrDezenas2(5) = "cinquenta"
    arrDezenas2(6) = "duas vezes trinta"
    arrDezenas2(7) = "setenta"
-   arrDezenas2(8) = "oitanta"
+   arrDezenas2(8) = "oitenta"
    arrDezenas2(9) = "noventa"
 
 End Sub
