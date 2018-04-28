@@ -157,7 +157,7 @@ Private Sub PreencheArrayDezenas2()
    arrDezenas2(3) = "trinta"
    arrDezenas2(4) = "quarenta"
    arrDezenas2(5) = "cinquenta"
-   arrDezenas2(6) = "duas vezes trinta"
+   arrDezenas2(6) = "sessenta"
    arrDezenas2(7) = "setenta"
    arrDezenas2(8) = "oitenta"
    arrDezenas2(9) = "noventa"
