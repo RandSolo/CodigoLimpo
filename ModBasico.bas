@@ -17,18 +17,20 @@ Public Function RetornarValorExtenso(dblValor As Double) As String
    Dim intCentavos As Integer
    Dim lngInteiro As Long
    Dim strCentavos As String
+   Dim strReais As String
    
    Call PreencheArray
    
    intCentavos = (dblValor - Int(dblValor)) * 100
-   lngInteiro = CInt(dblValor)
+   lngInteiro = Val(dblValor)
    
    strCentavos = RetornarCentavos(CInt(intCentavos))
-   
-   
-   RetornarValorExtenso = strCentavos
+   strReais = RetornarInteiro(CInt(lngInteiro))
+
+   RetornarValorExtenso = strReais & IIf((strCentavos = ""), "", "e ") & strCentavos
 
 End Function
+
 Private Function RetornarCentavos(intValor As Integer) As String
    Dim lngCount As Long
    Dim arrValor() As String
@@ -56,6 +58,32 @@ Private Function RetornarCentavos(intValor As Integer) As String
 
 End Function
 
+Private Function RetornarInteiro(intValor As Integer) As String
+   Dim lngCount As Long
+   Dim arrValor() As String
+   ReDim arrValor(Len(intValor))
+
+   If intValor = 0 Then
+      RetornarInteiro = ""
+      Exit Function
+   End If
+   
+   If Val(intValor) = 1 Then
+      RetornarInteiro = arrUnidade(intValor) & " real"
+   Else
+      If Left(CStr(intValor), 1) = "1" Then
+         RetornarInteiro = arrUnidade(Right(intValor, 1))
+      Else
+         If Right(CStr(intValor), 1) = "0" Then
+            RetornarInteiro = arrDezenas2(Left(CStr(intValor), 1))
+         Else
+            RetornarInteiro = arrDezenas2(Left(CStr(intValor), 1)) & " e " & arrUnidade(Right(CStr(intValor), 1))
+         End If
+      End If
+      RetornarInteiro = RetornarInteiro & " reais "
+   End If
+
+End Function
 
 Private Sub PreencheArray()
 
